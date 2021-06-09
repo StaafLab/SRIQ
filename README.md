@@ -25,6 +25,6 @@ Before running SRIQ correct settings has to be set for SRIQ in software/VRLA/res
 ```
 studyName: Desired output name for project
 studyPath: Folderpath to expression data
-inFileName: expression file. exclude .txt and separator should be \t
+inFileName: txt expression file. exclude .txt values tab separated
 outPath: Folderpath for SRIQ output
 ```
