@@ -1,5 +1,6 @@
 # SRIQ
-This is a implementation of Systematic Random forest Integrative Qualitative threshold (SRIQ) clustering
+This is a implementation of Systematic Random forest Integrative Qualitative threshold (SRIQ) clustering.
+For more in formation see our [publication](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
 
 To apply this pipe-line on your gene expression data, clone this repository to desired folder 
 
