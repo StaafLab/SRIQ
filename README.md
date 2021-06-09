@@ -29,4 +29,4 @@ inFileName: txt expression file. exclude .txt values tab separated
 outPath: Folderpath for SRIQ output
 ```
 To run GO enrichment, the significantly expressed gene names need to be converted into symbol names.
-To do that, run the ens2symbol(arg). Parameter can be found in [this documentation](https://docs.mygene.info/en/latest/doc/query_service.html)
+To do that, run the `obj.ens2symbol(arg)`. Parameter can be found in [this documentation](https://docs.mygene.info/en/latest/doc/query_service.html)
