@@ -20,7 +20,7 @@ N:th row: gene(N-1) \t val1 \t val2 \t ... \t valN
 
 Pipeline assumes that the data is fpkm normalized beforehand.
 
-Before running SRIQ correct settings has to be set for SRIQ in test.properties.
+Before running SRIQ correct settings has to be set for SRIQ in software/VRLA/resources/test.properties.
 
 ```
 studyName: Desired output name for project
