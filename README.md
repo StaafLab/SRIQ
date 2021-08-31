@@ -1,7 +1,7 @@
 # SRIQ
-Author = Jacob Karlström, Srinivas Veerla
+Author: Jacob Karlström, Srinivas Veerla
 
-Maintainer Jacob
+Maintainer: Jacob aka Fattigman
 
 ## Abstract
 This is a implementation of Systematic Random forest Integrative Qualitative threshold (SRIQ) clustering.
