@@ -1,5 +1,6 @@
 # SRIQ
 Author = Jacob Karlström, Srinivas Veerla
+
 Maintainer Jacob
 
 ## Abstract
@@ -7,8 +8,10 @@ This is a implementation of Systematic Random forest Integrative Qualitative thr
 SRIQ clusters by finding a small amount of highly correlated observations, then spiralling out from them to create bigger clusters.
 SRIQ evaluates clustering solution stability on its own and won't need user input for what number of cluster solutions to be evaluated.
 SRIQ has no limit to feature size performance wise, and can be run on ordinary home computers.
+
 For more information about SRIQ, see our [publication](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
 
+## Instructions
 To apply this pipe-line on your gene expression data, clone this repository to desired folder 
 
 The format your expression data should be in is:
