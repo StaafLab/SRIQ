@@ -15,6 +15,7 @@ cd SRIQ
 git clone https://github.com/Fattigman/SRIQ
 ```
 ## Usage
+To see data requirements before running the pipeline, [go to data requirements](#-data-requirements)
 
 Before clustering, run the normalization module on your expression data:
 ```
@@ -32,7 +33,7 @@ obj.preProcess()
 obj.filterDf.iloc[:-1,:].to_csv(f'path/to/normalized.txt', sep = '\t', index = False)
 ```
 
-To see data requirements [go to data requirements](#-data-requirements)
+
 
 ## Data requirements
 
