@@ -37,7 +37,7 @@ obj.filterDf.iloc[:-1,:].to_csv(f'path/to/normalized.txt', sep = '\t', index = F
 
 ## Data requirements
 
-The format your expression data should be in is:
+The format your fpkm normalized expression data should be in is:
 
 |    | Gene               |   TCGA-05-4384-01A |   TCGA-05-4390-01A |   TCGA-05-4396-01A |   TCGA-05-4405-01A |   TCGA-05-4410-01A |
 |---:|:-------------------|-------------------:|-------------------:|-------------------:|-------------------:|-------------------:|
@@ -48,7 +48,7 @@ The format your expression data should be in is:
 |  4 | ENSG00000078237.5  |            4.91725 |         4.8264     |         3.28451    |         4.13261    |            4.65857 |
 
 
-Pipeline assumes that the data is fpkm normalized beforehand.
+
 
 Before running SRIQ correct settings has to be set for SRIQ in software/VRLA/resources/test.properties.
 
