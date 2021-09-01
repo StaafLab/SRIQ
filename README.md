@@ -32,7 +32,7 @@ obj.preProcess()
 obj.filterDf.iloc[:-1,:].to_csv(f'path/to/normalized.txt', sep = '\t', index = False)
 ```
 
-To see data requirements [go to data requirements](# Data requirements)
+To see data requirements [go to data requirements](#-data-requirements)
 
 ## Data requirements
 
