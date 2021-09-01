@@ -18,7 +18,7 @@ git clone https://github.com/Fattigman/SRIQ
 To see data requirements before running the pipeline, [go to data requirements](#-data-requirements)
 
 Before clustering, run the normalization module on your expression data:
-```
+```python
 from DE import networkAnalysis as na
 expressionPath = "path/to/expression_data.csv"
 
