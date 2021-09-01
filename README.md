@@ -1,18 +1,20 @@
-# SRIQ
-Author: Jacob Karlström, Srinivas Veerla
-
-Maintainer: Jacob aka Fattigman
-
 ## Abstract
-This is a implementation of Systematic Random forest Integrative Qualitative threshold (SRIQ) clustering.
+This is an implementation of Systematic Random forest Integrative Qualitative threshold (SRIQ) clustering.
 SRIQ clusters by finding a small amount of highly correlated observations, then spiralling out from them to create bigger clusters.
 SRIQ evaluates clustering solution stability on its own and won't need user input for what number of cluster solutions to be evaluated.
 SRIQ has no limit to feature size performance wise, and can be run on ordinary home computers.
 
 For more information about SRIQ, see our [publication](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
 
-## Instructions
-To apply this pipe-line on your gene expression data, clone this repository to desired folder 
+## Installation
+
+To install this repository simply create a folder and clone the repository:
+```
+mkdir SRIQ
+git clone https://github.com/Fattigman/SRIQ
+```
+
+## Data requirements
 
 The format your expression data should be in is:
 ```
