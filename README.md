@@ -14,6 +14,25 @@ mkdir SRIQ
 cd SRIQ
 git clone https://github.com/Fattigman/SRIQ
 ```
+## Usage
+
+Before clustering, run the normalization module on your expression data:
+```
+from DE import networkAnalysis as na
+expressionPath = "path/to/expression_data.csv"
+
+obj = na()
+obj.readCsv(expressionPath, sep = separator)
+obj.preProcess()
+
+#Optional variance filter in case of low quality data
+#bottom = 0.5
+#obj.preFilter(bottom)
+
+obj.filterDf.iloc[:-1,:].to_csv(f'path/to/normalized.txt', sep = '\t', index = False)
+```
+
+To see data requirements [go to data requirements](#Data requirements)
 
 ## Data requirements
 
