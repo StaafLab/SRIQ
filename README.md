@@ -9,7 +9,7 @@ For more information about SRIQ, see our [publication](https://www.youtube.com/w
 ## Installation
 
 To install this repository simply create a folder and clone the repository:
-```
+```bash
 mkdir SRIQ
 cd SRIQ
 git clone https://github.com/Fattigman/SRIQ
