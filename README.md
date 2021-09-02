@@ -71,18 +71,9 @@ outPath: Folderpath for SRIQ output
 The enrichR module assumes that gene names are in the form of gene symbols. I have implemented [mygene](https://mygene.info) api, set the variable 'scopes' as the format of your gene names.
 
 ## Package requirements
-For python:
-* Pandas
-* json
-* seaborn
-* sklearn
-* numpy 
-* umap-learn
-* scipy
-* statsmodels
-* tqdm
-* lifelines
-* matplotlib
-* requests
+For python packages run following command:
+```python
+pip install -r requirements.txt
+```
 
 To run SRIQ and SAM analysis java is needed on your system.
