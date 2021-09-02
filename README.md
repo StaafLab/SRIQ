@@ -51,13 +51,13 @@ For SRIQ to accept the data to be clustered, the file has to be in following for
 | Genename M         |            val1    |         val2       |         ...        |         valN       |
 
 For clustering expression data should be 
-* Off-set by 0.1 OR set all values < 1 set to 1
-* Log2transformed
-* Median-centered
+1. Off-set by 0.1 OR set all values < 1 set to 1
+2. Log2transformed
+3. Median-centered
 
 For SAM-analysis:
-* Off-set by 0.1 OR all values < 1 set to 1
-* Log2transformed
+1. Off-set by 0.1 OR all values < 1 set to 1
+2. Log2transformed
 
 Before running SRIQ, test.properties file need to be correctly configured.
 The following lines needs to be correct or SRIQ won't start.
