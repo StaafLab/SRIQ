@@ -22,6 +22,11 @@ To run the pipeline, start the jupyter notebook file and follow the instructions
 jupyter notebook analysis_pipeline
 ```
 
+To run SRIQ, navigate to the folder in which the VRLA.jar file exist and run following command:
+```bash
+java -jar VRLA.jar
+
+
 ## features
 
 The pipeline provides following features 
@@ -35,31 +40,31 @@ The pipeline provides following features
 
 ## Data requirements
 
-The format your fpkm normalized expression data should be in is:
+Your data to be clustered should be a tab separated .txt file and look like this:
 
-|    | Gene               |   TCGA-05-4384-01A |   TCGA-05-4390-01A |   TCGA-05-4396-01A |   TCGA-05-4405-01A |   TCGA-05-4410-01A |
-|---:|:-------------------|-------------------:|-------------------:|-------------------:|-------------------:|-------------------:|
-|  0 | ENSG00000242268.2  |            0.12364 |         0          |         0.148773   |         0          |            0       |
-|  1 | ENSG00000270112.3  |            0       |         0.00586692 |         0.00688089 |         0.00639122 |            0       |
-|  2 | ENSG00000167578.15 |            4.04325 |         2.0436     |         2.02117    |         3.11505    |            5.08969 |
-|  3 | ENSG00000273842.1  |            0       |         0          |         0          |         0          |            0       |
-|  4 | ENSG00000078237.5  |            4.91725 |         4.8264     |         3.28451    |         4.13261    |            4.65857 |
-
-
-Before running SRIQ correct settings has to be set for SRIQ in software/VRLA/resources/test.properties.
-
-```
-studyName: Desired output name for project
-studyPath: Folderpath to expression data
-inFileName: txt expression file. exclude .txt values tab separated
-outPath: Folderpath for SRIQ output
-```
 For SRIQ to accept the data to be clustered, the file has to be in following format:
 | Gene               |   Sample1          |   Sample2          |   ...              |   SampleN          |
 |:-------------------|-------------------:|-------------------:|-------------------:|-------------------:|
 | Genename 1         |            val1    |         val2       |         ...        |         valN       |
 | ...                |            ...     |         ...        |         ...        |         ...        |
 | Genename M         |            val1    |         val2       |         ...        |         valN       |
+
+For clustering expression data should be 
+* Off-set by 0.1 OR all values < 1 set to 1
+* Log2transformed
+* Median-centered
+For SAM-analysis:
+* Off-set by 0.1 OR all values < 1 set to 1
+* Log2transformed
+
+Before running SRIQ, test.properties file need to be correctly configured.
+The following lines needs to be correct or SRIQ won't start.
+```
+studyName: Desired output name for project
+studyPath: Folderpath to expression data
+inFileName: expression file. exclude '.txt' from file name
+outPath: Folderpath for SRIQ output
+```
 
 
 To run GO enrichment, the significantly expressed gene names need to be converted into symbol names.
