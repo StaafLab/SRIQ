@@ -29,8 +29,9 @@ java -jar VRLA.jar
 
 ## features
 
-The pipeline provides following features 
+The project provide following features 
 
+* SRIQ-clustering
 * Pre-clustering data normalization
 * Silhoutte-plot analysis
 * UMAP
