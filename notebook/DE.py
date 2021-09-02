@@ -218,8 +218,7 @@ class networkAnalysis():
         #Filter the least variant genes based on threshold ranging 0 to 1
         self.filterDf = self.gexDf.iloc[:,start:].loc[(self.gexDf.iloc[:,start:].var(axis = 1) < self.gexDf.iloc[:,start:].var(axis = 1).quantile(top)) & (self.gexDf.iloc[:,start:].var(axis = 1) > self.gexDf.iloc[:,start:].var(axis = 1).quantile(bottom))]
     
-    def readSRIQ(self, csvpath, clusterpath, columnname = 'gene_id', **kwargs):
-        
+    def readSRIQ(self, csvpath, clusterpath, columnname = 'Gene', **kwargs):
         self.gexDf = pd.read_csv(csvpath, delimiter = '\t', index_col = columnname)
         self.sortedClusterList = list()
         self.clusterList = list()
@@ -534,10 +533,10 @@ class networkAnalysis():
         g2 = sns.relplot(x= 'comp 1', y='comp 2', data= self.uDf, style = 'hue', hue='hue', col='cutoff',col_wrap=2, sharey = False, sharex = False, **kwargs)
     
         
-    def ensemble2gene(self):
+    def ensemble2gene(self, scopes = 'ensembl.gene'):
         #Converts the enrichment list from ensembl to gene symbol
         for i, ele in enumerate(self.eList):    
-            self.eList[i] = self.ens2symHelper(ele)['symbol'].dropna().tolist()
+            self.eList[i] = self.ens2symHelper(ele, scopes )['symbol'].dropna().tolist()
 
     def metaGenes(self, **kwargs):
         if self.symbolDf is None: self.ensembl2symbol()
@@ -554,10 +553,10 @@ class networkAnalysis():
     
         
         
-    def ens2symHelper(self, genes): 
+    def ens2symHelper(self, genes, scopes = 'ensembl.gene'): 
         #Need to remove dots before before submitting gene list.
         headers = {'content-type': 'application/x-www-form-urlencoded'}
-        params = f'q={",".join(genes)}&scopes=ensembl.gene&fields=symbol'
+        params = f'q={",".join(genes)}&scopes={scopes}&fields=symbol'
         res = requests.post('http://mygene.info/v3/query', data=params, headers=headers)
         data = json.loads(res.text)
         return pd.json_normalize(data).set_index('query')
