@@ -39,7 +39,7 @@ The project provide following features
 * Gene enrichment analysis with EnrichR against customizable databases
 * Visualization of single or multiple genes across clusters
 
-## Data requirements
+## Data format requirements
 
 Your data, to be clustered, should be a tab separated .txt file and look like this:
 
@@ -69,3 +69,20 @@ outPath: Folderpath for SRIQ output
 ```
 
 The enrichR module assumes that gene names are in the form of gene symbols. I have implemented [mygene](https://mygene.info) api, set the variable 'scopes' as the format of your gene names.
+
+## Package requirements
+For python:
+* Pandas
+* json
+* seaborn
+* sklearn
+* numpy 
+* umap-learn
+* scipy
+* statsmodels
+* tqdm
+* lifelines
+* matplotlib
+* requests
+
+To run SRIQ and SAM analysis java is needed on your system.
