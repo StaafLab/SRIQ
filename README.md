@@ -36,7 +36,7 @@ The project provide following features
 * Silhoutte-plot analysis
 * UMAP
 * Differential gene expression with SAM
-* Enrichment analysis with EnrichR against customizable databases
+* Gene enrichment analysis with EnrichR against customizable databases
 * Visualization of single or multiple genes across clusters
 
 ## Data requirements
