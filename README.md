@@ -25,7 +25,7 @@ jupyter notebook analysis_pipeline
 To run SRIQ, navigate to the folder in which the VRLA.jar file exist and run following command:
 ```bash
 java -jar VRLA.jar
-
+```
 
 ## features
 
