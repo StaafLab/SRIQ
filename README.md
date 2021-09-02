@@ -54,7 +54,7 @@ For clustering expression data should be
 * Off-set by 0.1 OR all values < 1 set to 1
 * Log2transformed
 * Median-centered
-* 
+
 For SAM-analysis:
 * Off-set by 0.1 OR all values < 1 set to 1
 * Log2transformed
