@@ -27,7 +27,7 @@ To run SRIQ, navigate to the folder in which the VRLA.jar file exist and run fol
 java -jar VRLA.jar
 ```
 
-## features
+## Features
 
 The project provide following features 
 
@@ -54,6 +54,7 @@ For clustering expression data should be
 * Off-set by 0.1 OR all values < 1 set to 1
 * Log2transformed
 * Median-centered
+* 
 For SAM-analysis:
 * Off-set by 0.1 OR all values < 1 set to 1
 * Log2transformed
