@@ -57,7 +57,9 @@ outPath: Folderpath for SRIQ output
 For SRIQ to accept the data to be clustered, the file has to be in following format:
 | Gene               |   Sample1          |   Sample2          |   ...              |   SampleN          |
 |:-------------------|-------------------:|-------------------:|-------------------:|-------------------:|
-| Genename 1         |            val1    |         val2       |         ...        |         val3       |
+| Genename 1         |            val1    |         val2       |         ...        |         valN       |
+| ...                |            ...     |         ...        |         ...        |         ...        |
+| Genename M         |            val1    |         val2       |         ...        |         valN       |
 
 
 To run GO enrichment, the significantly expressed gene names need to be converted into symbol names.
