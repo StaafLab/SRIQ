@@ -41,7 +41,7 @@ The project provide following features
 
 ## Data requirements
 
-Your data to be clustered should be a tab separated .txt file and look like this:
+Your data, to be clustered, should be a tab separated .txt file and look like this:
 
 For SRIQ to accept the data to be clustered, the file has to be in following format:
 | Gene               |   Sample1          |   Sample2          |   ...              |   SampleN          |
