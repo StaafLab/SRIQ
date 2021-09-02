@@ -68,6 +68,4 @@ inFileName: expression file. exclude '.txt' from file name
 outPath: Folderpath for SRIQ output
 ```
 
-
-To run GO enrichment, the significantly expressed gene names need to be converted into symbol names.
-To do that, run the `obj.ens2symbol(arg)`. Parameter can be found in [this documentation](https://docs.mygene.info/en/latest/doc/query_service.html)
+The enrichR module assumes that gene names are in the form of gene symbols. I have implemented [mygene](https://mygene.info) api, set the variable 'scopes' as the format of your gene names.
