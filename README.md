@@ -60,7 +60,7 @@ For SAM-analysis:
 2. Log2transformed
 
 Before running SRIQ, test.properties file need to be correctly configured.
-The following lines needs to be correct or SRIQ won't start.
+The following lines needs to be correct otherwise SRIQ won't start.
 ```
 studyName: Desired output name for project
 studyPath: Folderpath to expression data
