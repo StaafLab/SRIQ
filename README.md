@@ -16,7 +16,7 @@ git clone https://github.com/Fattigman/SRIQ
 ```
 ## Usage
 
-To run the pipeline, start the jupyter notebook file and follow the instructions.
+To run the pipeline, start the jupyter notebook file and follow the instructions within the pipeline.
 
 ```python
 jupyter notebook analysis_pipeline
