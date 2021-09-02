@@ -55,7 +55,8 @@ inFileName: txt expression file. exclude .txt values tab separated
 outPath: Folderpath for SRIQ output
 ```
 For SRIQ to accept the data to be clustered, the file has to be in following format:
-| Gene | Sample1 | Sample2 | ... | Sample N |
-|GeneName1 | value1 | value2 | ... | value N |
+| Gene               |   Sample1 |   Sample2 |   ... |   SampleN |
+|:-------------------|-------------------:|-------------------:|-------------------:|
+| Genename 1  |            val1 |         val2          |         ...   |         val3         |
 To run GO enrichment, the significantly expressed gene names need to be converted into symbol names.
 To do that, run the `obj.ens2symbol(arg)`. Parameter can be found in [this documentation](https://docs.mygene.info/en/latest/doc/query_service.html)
