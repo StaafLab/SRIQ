@@ -72,7 +72,7 @@ The enrichR module assumes that gene names are in the form of gene symbols. I ha
 
 ## Package requirements
 For python packages run following command:
-```python
+```bash
 pip install -r requirements.txt
 ```
 
