@@ -15,25 +15,23 @@ cd SRIQ
 git clone https://github.com/Fattigman/SRIQ
 ```
 ## Usage
-To see data requirements before running the pipeline, [go to data requirements](#-data-requirements)
 
-Before clustering, run the normalization module on your expression data:
+To run the pipeline, start the jupyter notebook file and follow the instructions.
+
 ```python
-from DE import networkAnalysis as na
-expressionPath = "path/to/expression_data.csv"
-
-obj = na()
-obj.readCsv(expressionPath, sep = separator)
-obj.preProcess()
-
-#Optional variance filter in case of low quality data
-#bottom = 0.5
-#obj.preFilter(bottom)
-
-obj.filterDf.iloc[:-1,:].to_csv(f'path/to/normalized.txt', sep = '\t', index = False)
+jupyter notebook analysis_pipeline
 ```
 
+## features
 
+The pipeline provides following features 
+
+* Pre-clustering data normalization
+* Silhoutte-plot analysis
+* UMAP
+* Differential gene expression with SAM
+* Enrichment analysis with EnrichR against customizable databases
+* Visualization of single or multiple genes across clusters
 
 ## Data requirements
 
@@ -48,8 +46,6 @@ The format your fpkm normalized expression data should be in is:
 |  4 | ENSG00000078237.5  |            4.91725 |         4.8264     |         3.28451    |         4.13261    |            4.65857 |
 
 
-
-
 Before running SRIQ correct settings has to be set for SRIQ in software/VRLA/resources/test.properties.
 
 ```
@@ -58,5 +54,8 @@ studyPath: Folderpath to expression data
 inFileName: txt expression file. exclude .txt values tab separated
 outPath: Folderpath for SRIQ output
 ```
+For SRIQ to accept the data to be clustered, the file has to be in following format:
+| Gene | Sample1 | Sample2 | ... | Sample N |
+|GeneName1 | value1 | value2 | ... | value N |
 To run GO enrichment, the significantly expressed gene names need to be converted into symbol names.
 To do that, run the `obj.ens2symbol(arg)`. Parameter can be found in [this documentation](https://docs.mygene.info/en/latest/doc/query_service.html)
