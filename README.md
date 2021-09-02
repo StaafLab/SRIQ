@@ -29,7 +29,7 @@ java -jar VRLA.jar
 
 ## Features
 
-The project provide following features 
+The project provide following features:
 
 * SRIQ-clustering
 * Pre-clustering data normalization
