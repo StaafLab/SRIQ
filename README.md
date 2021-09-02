@@ -51,7 +51,7 @@ For SRIQ to accept the data to be clustered, the file has to be in following for
 | Genename M         |            val1    |         val2       |         ...        |         valN       |
 
 For clustering expression data should be 
-* Off-set by 0.1 OR all values < 1 set to 1
+* Off-set by 0.1 OR set all values < 1 set to 1
 * Log2transformed
 * Median-centered
 
