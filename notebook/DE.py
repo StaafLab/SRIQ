@@ -20,7 +20,7 @@ import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 import pandas as pd
 import seaborn as sns
-#import umap as UMAP
+import umap.umap_ as umap
 import matplotlib.pyplot as plt
 from bioinfokit.analys import get_data, stat
 from sklearn.decomposition import PCA
@@ -290,23 +290,19 @@ class networkAnalysis():
         plt.show()
         
         
-    def Umap(self,n, demo = False, U_S = True, **kwargs):
+    def Umap(self,n_neigh = 5, min_dist = 0.3, n_comp = 5, demo = False, U_S = True, **kwargs):
         #Does a umap model based on the pca model, n = number of desired principal components
-        X = self.transposedGexDf.values[:,0:(self.transposedGexDf.shape[1]-1)]
-        Y = self.transposedGexDf.values[:,self.transposedGexDf.shape[1]-1]
-        X_reduced = PCA(n_components = 30).fit_transform(X)
-        print("Performing Uniform Manifold Approximation and Projection (UMAP) ...")
-        model = UMAP(n_neighbors = 30, min_dist = 0.3, n_components =n )
-        self.umap = model.fit_transform(X_reduced)
-        if demo:
-            cutoff = [demo]*len(self.umap[:,0])
-            self.tempDf = pd.DataFrame({'comp 1':self.umap[:,0],'comp 2':self.umap[:,1], 'cutoff':cutoff ,'hue':Y})
-            self.uDf = self.uDf.append(self.tempDf,ignore_index = True)
-        elif U_S:
-            ax = sns.scatterplot(x=self.umap[:,0], y=self.umap[:,1], size = 1, style = Y, hue = Y, **kwargs)
-            return ax
-        else:
-            sns.scatterplot(x=self.umap[:,0], y=self.umap[:,1], size = 1, style = Y, hue = Y, **kwargs)
+        reducer = umap.UMAP(n_neighbors=n_neigh, min_dist= min_dist,  n_components = n_comp)
+
+        embedding = reducer.fit_transform(self.gexDf.iloc[:-1,:].transpose())
+        
+
+        sns.scatterplot(x = embedding[:,0], y = embedding[:,1], hue = self.gexDf.loc['Clusters'], palette = sns.color_palette(n_colors = self.clusterNum))
+
+        plt.xlabel('UMAP1')
+        plt.ylabel('UMAP2')
+
+        plt.title(f'UMAP of SRIQ K{self.clusterNum} solution')
 
     
     def diffGeneAnalysis(self, transformed = True, test = 'non-parametric'):
