@@ -37,7 +37,7 @@ from matplotlib.colors import ListedColormap
 
 
 class networkAnalysis():
-    def __init__(self, newDf = None):
+    def __init__(self, newDf = None, symbol = False):
         #Initiates the working dataframe for manual initiation, not recomended.
         if newDf:
             self.gexDf = newDf
@@ -55,17 +55,18 @@ class networkAnalysis():
         self.preDf = None
         self.samResults = None
         
-    def SilhouttePlot(self, U_S = True, sizes = 50):
-        if self.pca_data is None:
+    def SilhouttePlot(self, sizes = 100):
+        #if self.pca_data is None:
+        #    self.calcPcaModel()
+        if self.samResults is not None:
             self.calcPcaModel()
-        if self.samDf is None:
             labels = self.gexDf.iloc[-1:].transpose()['Clusters']
-            X = self.gexDf.corr('pearson')
+            X = self.samResults.corr('pearson')
             X = X.applymap(lambda x: (1 - x))
         else:
             self.calcPcaModel()
-            labels = self.samDf.iloc[-1:].transpose()['Clusters']
-            X = self.samDf.corr('pearson')
+            labels = self.gexDf.loc['Clusters'] 
+            X = self.gexDf.drop('Clusters', axis = 0).corr('pearson')
             X = X.applymap(lambda x: (1 - x))
         
         np.fill_diagonal(X.to_numpy(), 0)
@@ -125,7 +126,6 @@ class networkAnalysis():
         plt.suptitle(("Silhouette analysis for SRIQ clustering on sample data "
                   "with n_clusters = %d" % self.clusterNum),
                  fontsize=14, fontweight='bold')
-        plt.savefig('silhoutte.pdf', dpi = 1080)
         plt.show()
         
     def readCCL(self, cons = '', csvpath = '',clusNum = 3):
@@ -145,7 +145,15 @@ class networkAnalysis():
         self.clusterNum = clusNum
         
     def preProcess(self):
-        
+
+        DEGDf = self.gexDf
+        DEGDf = DEGDf[(DEGDf.iloc[:,1:].T != 0).any()]
+        DEGDf.iloc[:,1:] = DEGDf.iloc[:,1:].apply(lambda x: x+0.1)
+        DEGDf.iloc[:,1:] = DEGDf.iloc[:,1:].apply(lambda x: x/x.median())
+        DEGDf.iloc[:,1:] = np.log2(DEGDf.iloc[:,1:])
+        self.DEGDf = DEGDf
+
+
         f = lambda x: 1 if x < 1 else x
         self.gexDf.iloc[:,1:] = self.gexDf.iloc[:,1:].applymap(func = f)
         self.preDf = self.gexDf
@@ -155,6 +163,8 @@ class networkAnalysis():
         self.gexDf.iloc[:,1:] = self.gexDf.iloc[:,1:].applymap(lambda x: np.log2(x))
         self.gexDf = self.gexDf[(self.gexDf.iloc[:,1:].T != 0).any()]
         
+        self.DEGDf =  self.DEGDf[self.DEGDf['Gene'].isin(self.gexDf['Gene'].tolist())]
+
         
     def preFilterCalc(self):
         self.fpkmVarDf = self.gexDf.iloc[:,1:].var(axis = 'columns')
@@ -218,7 +228,7 @@ class networkAnalysis():
         #Filter the least variant genes based on threshold ranging 0 to 1
         self.filterDf = self.gexDf.iloc[:,start:].loc[(self.gexDf.iloc[:,start:].var(axis = 1) < self.gexDf.iloc[:,start:].var(axis = 1).quantile(top)) & (self.gexDf.iloc[:,start:].var(axis = 1) > self.gexDf.iloc[:,start:].var(axis = 1).quantile(bottom))]
     
-    def readSRIQ(self, csvpath, clusterpath, columnname = 'Gene', **kwargs):
+    def readSRIQ(self, csvpath, clusterpath, columnname = 'Gene', symbol = False, **kwargs):
         self.gexDf = pd.read_csv(csvpath, delimiter = '\t', index_col = columnname)
         self.sortedClusterList = list()
         self.clusterList = list()
@@ -241,24 +251,28 @@ class networkAnalysis():
         self.samples = f(self.gexDf.columns.tolist())
             
         self.dist = clusterpath
-               
+        if symbol:
+            self.symbolDf = self.gexDf
+            self.tSymbolDf = self.symbolDf.transpose()
     def setlog2Df(self, df):
         self.gexDf = df
         self.transposedGexDf = self.gexDf.transpose()
         
 
-    def calcPcaModel(self, Clustered = True, demo = False):
+    def calcPcaModel(self, Clustered = False, demo = False):
         #Calculates the pca model and plots the scree plot
         pca = PCA()
-        if Clustered: 
+        #if Clustered: 
+            #pca.fit(self.transposedGexDf.drop(['Clusters'],axis=1))
+            #self.pca_data = pca.transform(self.transposedGexDf.drop(['Clusters'],axis=1))
+        if self.samResults is not None:
+            pca.fit(self.samResults.transpose())
+            self.pca_data = pca.transform(self.samResults.transpose())
+        else: 
             pca.fit(self.transposedGexDf.drop(['Clusters'],axis=1))
             self.pca_data = pca.transform(self.transposedGexDf.drop(['Clusters'],axis=1))
-        elif self.immuneDf is not None:
-            pca.fit(self.tsamDf)
-            self.pca_data = pca.transform(self.tsamDf.drop(['Clusters'],axis=1))
-        else: 
-            pca.fit(self.transposedGexDf)
-            self.pca_data = pca.transform(self.transposedGexDf)
+            #pca.fit(self.transposedGexDf)
+            #self.pca_data = pca.transform(self.transposedGexDf)
         
         per_var = np.round(pca.explained_variance_ratio_* 100, decimals=1)
         self.labels = ['PC' + str(x) for x in range(1, len(per_var)+1)]
@@ -290,7 +304,7 @@ class networkAnalysis():
         plt.show()
         
         
-    def Umap(self,n_neigh = 5, min_dist = 0.3, n_comp = 5, demo = False, U_S = True, **kwargs):
+    def Umap(self,n_neigh = 10, min_dist = 0.3, n_comp = 4, demo = False, **kwargs):
         #Does a umap model based on the pca model, n = number of desired principal components
         reducer = umap.UMAP(n_neighbors=n_neigh, min_dist= min_dist,  n_components = n_comp)
 
@@ -304,7 +318,36 @@ class networkAnalysis():
 
         plt.title(f'UMAP of SRIQ K{self.clusterNum} solution')
 
-    
+    def configResources(self,outPath = '/Users/jacobkarlstrom/projekt/SRIQ/software/output/',studyPath='/Users/jacobkarlstrom/projekt/SRIQ/notebook/data/expressionData/',  data='filtered(21k)', resources = '../software/VRLA/resources/test.properties', studyName = 'SRIQ', cutOff = None, permutations = 10000, iterations = 10, minBagSize=1200, minClusterSize = 0):
+        if cutOff is None: cutOff = [0.9,0.89,0.88,0.87,0.86,0.85,0.84,0.83,0.82,0.81,0.80,0.79,0.78,0.77,0.76,0.75,0.74,0.73,0.72,0.71,0.7,0.69,0.68,0.67,0.66,0.65,0.64,0.63,0.62,0.61,0.6,0.59,0.58,0.57,0.56,0.55,0.54,0.53,0.52,0.51,0.5,0.49,0.48,0.47,0.46,0.45,0.44,0.43,0.42,0.41,0.4,0.39,0.38,0.37,0.36,0.35,0.34]
+        output = ''
+        with open(resources) as file:
+            for line in file.readlines():
+                if 'studyName' in line:
+                    output += f'studyName={studyName}\n'
+                elif 'inFileName' in line:
+                    output += f'inFileName={data}\n'
+                elif 'distCutOff' in line:
+                    if isinstance(cutOff, list): 
+                        output += 'distCutOff={}\n'.format(", ".join([str(x) for x in cutOff]))
+                    else:
+                        output += f'distCutOff={str(cutOff)}\n'
+                elif 'permutations' in line:
+                    output += f'permutations={permutations}\n'
+                elif 'minClusterSize' in line:
+                    output += f'minClusterSize={minClusterSize}\n'
+                elif 'minBagSize' in line:
+                    output += f'minBagSize={minBagSize}\n'
+                elif 'iterations' in line:
+                    output += f'iterations={iterations}\n'
+                elif 'studyPath' in line:
+                    output += f'studyPath={studyPath}\n'
+                elif 'outPath' in line:
+                    output += f'outPath={outPath}\n'
+                else:
+                    output += line
+        with open(resources, 'w') as file:
+            file.write(output)
     def diffGeneAnalysis(self, transformed = True, test = 'non-parametric'):
         
         #Tests each gene for its significance in the different clusters
@@ -471,7 +514,7 @@ class networkAnalysis():
             self.goEnrichDf = self.goEnrichDf.sort_values(by = [2], ascending = False)
         else: print('Error: Run the filtering module')
             
-    def plotEnrichmentResults(self,u_d = 'up', **kwargs):
+    def plotEnrichmentResults(self,u_d = 'up',  **kwargs):
         #plots the enirchment result from rDf
         if self.goEnrichDf is not None:
             lista = self.goEnrichDf.sort_values('cluster')[1].tolist()
@@ -501,7 +544,9 @@ class networkAnalysis():
             else:
                 c  = sns.dark_palette("lightblue")
             dicts = {'up':upDf, 'down':downDf}
-            return sns.clustermap(dicts[u_d], vmax = 5, col_cluster = False,row_cluster = False, col_colors = col_colors, cmap = c, **kwargs)
+            #fig, ax = plt.subplots(figsize=figSize) 
+
+            sns.clustermap(dicts[u_d], vmax = 5, col_cluster = False,row_cluster = False, col_colors = col_colors, cmap = c,  **kwargs)
         else: print ('Run the enrichR module')
         
     def demoRun(self, cutoffs, csvpath, clusterpath, columnname = 'Gene', **kwargs):
@@ -696,8 +741,8 @@ class networkAnalysis():
     def dropFeature(self, feature):
         self.col_colors.drop(columns= ['Non-smokers'])
         
-    def plotSingleGene(self, genes = list(), **kwargs):
-        if self.symbolDf is None: self.ensembl2symbol()
+    def plotSingleGene(self, genes = list(), scopes = 'ensembl.gene', **kwargs):
+        if self.symbolDf is None: self.ensembl2symbol(scopes)
         fig, axs = plt.subplots(len(genes), figsize = (10,10))
         for counter, gene in enumerate(genes):
             lista = [gene, 'Clusters']
@@ -705,8 +750,8 @@ class networkAnalysis():
             g.axhline(0)
         fig.tight_layout()
             
-    def plotMultipleGenes(self, geneList = list, **kwargs):
-        if self.symbolDf is None: self.ensembl2symbol()
+    def plotMultipleGenes(self, geneList = list,scopes = 'ensembl.gene', **kwargs):
+        if self.symbolDf is None: self.ensembl2symbol(scopes = 'ensembl.gene')
         if len(geneList) > 1: fig, axs = plt.subplots(len(geneList), figsize = (10,10))
         for counter, genes in enumerate(geneList):
             t = pd.melt(self.tSymbolDf.filter(items = genes+ ['Clusters']), id_vars = 'Clusters' ).drop(['variable'], axis = 1)
@@ -818,7 +863,7 @@ class networkAnalysis():
         else:
             print('Please do so first')
         
-    def plotSamResults(self, resultsPath = '/Users/jacobkarlstrom/projekt/SRIQ/notebook/data/expressionData/SRIQ_10000itr_1200var_10r/10000/QC_Spiral(false)/Results_log_0.59_5/SRIQ_Data_in_5_ClusterOrder_ABS_Unique.txt',q = 4, lfc = 2, **kwargs):
+    def plotSamResults(self, vmin = -1, vmax = 1.5, resultsPath = '/Users/jacobkarlstrom/projekt/SRIQ/notebook/data/expressionData/SRIQ_10000itr_1200var_10r/10000/QC_Spiral(false)/Results_log_o_5/SRIQ_Data_in_5_ClusterOrder_ABS_Unique.txt',q = 4, lfc = 2, **kwargs):
         lfcPath = '/'.join(resultsPath.split('/')[0:-1])+'/SMSAM/1_Cluster_vs_All_SAM_T-test.txt'
         qlfcDf = pd.read_csv(lfcPath, sep = '\t')
         genes = qlfcDf[qlfcDf['q-value'] < q][abs(qlfcDf[qlfcDf['q-value'] < q]['FC']) > lfc].index.tolist()
@@ -835,21 +880,14 @@ class networkAnalysis():
         df = df.transform(f, axis = 'columns')
         cols = self.gexDf.columns.tolist()
         df = df[cols]
-        sns.clustermap(df, vmin = -1, vmax  = 1.5, cmap ='vlag', row_cluster = False, col_cluster = False)
+        sns.clustermap(df, vmin = vmin, vmax  = vmax, cmap ='vlag', row_cluster = False, col_cluster = False, **kwargs)
         self.samResults = df
-        """
-        self.results  = pd.read_csv(resultsPath, sep ='\t')
-        sns.heatmap(self.results , vmin = -1, vmax= 1, cmap='vlag', xticklabels = False, yticklabels=False, **kwargs)
-        gener = self.results.index.to_list()
-        gener.append('Clusters')
-        gener = [g.split('.')[0] for g in gener]
-        self.samDf = self.gexDf.filter(items = gener, axis = 0)
-        self.tsamDf = self.samDf.transpose()
-        """
+       
         resultsPath = '/'.join(resultsPath.split('/')[:-1]) + '/SMSAM/Genelist_ABS_q(5.0)_fc(2.0)'
         
         files = sorted(os.listdir(resultsPath))
         
+
         self.fcDf = pd.DataFrame(columns = ['Gene', 'FC', 'Clusters'])
         
         
