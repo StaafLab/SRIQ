@@ -546,7 +546,7 @@ class networkAnalysis():
             dicts = {'up':upDf, 'down':downDf}
             #fig, ax = plt.subplots(figsize=figSize) 
 
-            sns.clustermap(dicts[u_d], vmax = 5, col_cluster = False,row_cluster = False, col_colors = col_colors, cmap = c,  **kwargs)
+            return sns.clustermap(dicts[u_d], vmax = 5, col_cluster = False,row_cluster = False, col_colors = col_colors, cmap = c,  **kwargs)
         else: print ('Run the enrichR module')
         
     def demoRun(self, cutoffs, csvpath, clusterpath, columnname = 'Gene', **kwargs):
