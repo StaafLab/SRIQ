@@ -603,12 +603,12 @@ class networkAnalysis():
         return pd.json_normalize(data).set_index('query')
         
         
-    def ensembl2symbol(self):
+    def ensembl2symbol(self, scopes = 'ensembl.gene'):
         print('This may produce duplicate indexes which will be removed, keeping the first occurence')
         newIndex = [x.split('.')[0] for x in list(self.gexDf.index)]
         self.gexDf.index = newIndex
         self.transposedGexDf = self.gexDf.transpose()
-        self.genes = self.ens2symHelper(newIndex)
+        self.genes = self.ens2symHelper(newIndex, scopes)
         newIndex = (self.genes['symbol'].dropna())
         self.symbolDf = self.gexDf.reindex(list(newIndex.index))
         self.symbolDf.index = list(newIndex)
