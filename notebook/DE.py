@@ -317,34 +317,40 @@ class networkAnalysis():
 
     def configResources(self,outPath = '/Users/jacobkarlstrom/projekt/SRIQ/software/output/',studyPath='/Users/jacobkarlstrom/projekt/SRIQ/notebook/data/expressionData/',  data='filtered(21k)', resources = '../software/VRLA/resources/test.properties', studyName = 'SRIQ', cutOff = None, permutations = 10000, iterations = 10, minBagSize=1200, minClusterSize = 0):
         if cutOff is None: cutOff = [x/100 for x in range(0,102,2)]
-
-        with open(resources) as file:
-            for line in file.readlines():
-                if 'studyName' in line:
-                    output += f'studyName={studyName}\n'
-                elif 'inFileName' in line:
-                    output += f'inFileName={data}\n'
-                elif 'distCutOff' in line:
-                    if isinstance(cutOff, list): 
-                        output += 'distCutOff={}\n'.format(", ".join([str(x) for x in cutOff]))
+        try:
+            with open(resources) as file:
+                for line in file.readlines():
+                    if 'studyName' in line:
+                        output += f'studyName={studyName}\n'
+                    elif 'inFileName' in line:
+                        output += f'inFileName={data}\n'
+                    elif 'distCutOff' in line:
+                        if isinstance(cutOff, list): 
+                            output += 'distCutOff={}\n'.format(", ".join([str(x) for x in cutOff]))
+                        else:
+                            output += f'distCutOff={str(cutOff)}\n'
+                    elif 'permutations' in line:
+                        output += f'permutations={permutations}\n'
+                    elif 'minClusterSize' in line:
+                        output += f'minClusterSize={minClusterSize}\n'
+                    elif 'minBagSize' in line:
+                        output += f'minBagSize={minBagSize}\n'
+                    elif 'iterations' in line:
+                        output += f'iterations={iterations}\n'
+                    elif 'studyPath' in line:
+                        output += f'studyPath={studyPath}\n'
+                    elif 'outPath' in line:
+                        output += f'outPath={outPath}\n'
                     else:
-                        output += f'distCutOff={str(cutOff)}\n'
-                elif 'permutations' in line:
-                    output += f'permutations={permutations}\n'
-                elif 'minClusterSize' in line:
-                    output += f'minClusterSize={minClusterSize}\n'
-                elif 'minBagSize' in line:
-                    output += f'minBagSize={minBagSize}\n'
-                elif 'iterations' in line:
-                    output += f'iterations={iterations}\n'
-                elif 'studyPath' in line:
-                    output += f'studyPath={studyPath}\n'
-                elif 'outPath' in line:
-                    output += f'outPath={outPath}\n'
-                else:
-                    output += line
-        with open(resources, 'w') as file:
-            file.write(output)
+                        output += line
+            with open(resources, 'w') as file:
+                file.write(output)
+        except FileNotFoundError as e:
+            print(e)
+            raise Exception()
+        else:
+            print ('Unknow error')
+            raise Exception()
     def diffGeneAnalysis(self, transformed = True, test = 'non-parametric'):
         
         #Tests each gene for its significance in the different clusters
