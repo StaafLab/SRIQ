@@ -149,7 +149,7 @@ class networkAnalysis():
             self.gexDf = self.gexDf[(self.gexDf.iloc[:,1:].T != 0).any()]
             
             self.DEGDf =  self.DEGDf[self.DEGDf['Gene'].isin(self.gexDf['Gene'].tolist())]
-        except FileNotFoundError:
+        except KeyError:
             print('Gene column not found in dataframe.')
             raise Exception()
         else:
@@ -174,6 +174,7 @@ class networkAnalysis():
     
   
     def readCsv(self, csvpath = None, readType = 'csv', newIndex = False, sep = ',', fpkm = False):
+        try:
             if readType == 'csv':
                 self.gexDf = pd.read_csv(csvpath, sep = sep, index_col=False)
                 self.transposedGexDf = self.gexDf.transpose()  
@@ -200,7 +201,13 @@ class networkAnalysis():
             if newIndex:
                 self.gexDf = self.gexDf.set_index(newIndex)
                 self.transposedGexDf = self.gexDf.transpose()
-                
+        except FileNotFoundError as e:
+            print(e)
+            raise Exception()
+        else:
+            print ('Unknown error')
+            raise Exception()
+
             
     def filterCCL(self, SRIQpath):
         lista = list()
