@@ -208,7 +208,7 @@ class networkAnalysis():
             print ('Unknown error')
             raise Exception()
 
-            
+
     def filterCCL(self, SRIQpath):
         lista = list()
         for file in sorted(os.listdir(SRIQpath)):
@@ -316,8 +316,8 @@ class networkAnalysis():
         plt.title(f'UMAP of SRIQ K{self.clusterNum} solution')
 
     def configResources(self,outPath = '/Users/jacobkarlstrom/projekt/SRIQ/software/output/',studyPath='/Users/jacobkarlstrom/projekt/SRIQ/notebook/data/expressionData/',  data='filtered(21k)', resources = '../software/VRLA/resources/test.properties', studyName = 'SRIQ', cutOff = None, permutations = 10000, iterations = 10, minBagSize=1200, minClusterSize = 0):
-        if cutOff is None: cutOff = [0.9,0.89,0.88,0.87,0.86,0.85,0.84,0.83,0.82,0.81,0.80,0.79,0.78,0.77,0.76,0.75,0.74,0.73,0.72,0.71,0.7,0.69,0.68,0.67,0.66,0.65,0.64,0.63,0.62,0.61,0.6,0.59,0.58,0.57,0.56,0.55,0.54,0.53,0.52,0.51,0.5,0.49,0.48,0.47,0.46,0.45,0.44,0.43,0.42,0.41,0.4,0.39,0.38,0.37,0.36,0.35,0.34]
-        output = ''
+        if cutOff is None: cutOff = [x/100 for x in range(0,102,2)]
+
         with open(resources) as file:
             for line in file.readlines():
                 if 'studyName' in line:
