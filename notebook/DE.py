@@ -42,6 +42,7 @@ class networkAnalysis():
         if newDf:
             self.gexDf = newDf
             self.transposedGexDf = self.gexDf.transpose()
+        #Initialized the different dataframes used in the object
         self.eList = None
         self.pValuesDf = None
         self.lfcDf = None
@@ -127,22 +128,6 @@ class networkAnalysis():
                   "with n_clusters = %d" % self.clusterNum),
                  fontsize=14, fontweight='bold')
         plt.show()
-        
-    def readCCL(self, cons = '', csvpath = '',clusNum = 3):
-        columns = ['Assay', f'ConsensusCluster{clusNum}']
-        df = pd.read_csv(cons, sep = ' ')
-        df = df[columns]
-        df = df.set_index('Assay')
-        df = df.transpose()
-        df.index = ['Clusters']
-        df = df.iloc[:,1:]
-        df.columns = [x.replace('.', '-') for x in df.columns]
-        self.sortedClusterList = [[x for x in df.columns if df[x].iloc[0] == i] for i in range(1,clusNum+1)]
-        expDf = pd.read_csv(csvpath, sep = '\t', index_col='Gene')
-        self.gexDf = pd.concat([expDf, df], axis = 'index')
-        self.gexDf = self.gexDf.sort_values(by ='Clusters', axis = 1)
-        self.transposedGexDf = self.gexDf.transpose()
-        self.clusterNum = clusNum
         
     def preProcess(self):
 
