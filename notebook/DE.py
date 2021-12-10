@@ -130,25 +130,30 @@ class networkAnalysis():
         plt.show()
         
     def preProcess(self):
+        try:
+            DEGDf = self.gexDf
+            DEGDf = DEGDf[(DEGDf.iloc[:,1:].T != 0).any()]
+            DEGDf.iloc[:,1:] = DEGDf.iloc[:,1:].apply(lambda x: x+0.1)
+            DEGDf.iloc[:,1:] = DEGDf.iloc[:,1:].apply(lambda x: x/x.median())
+            DEGDf.iloc[:,1:] = np.log2(DEGDf.iloc[:,1:])
+            self.DEGDf = DEGDf
 
-        DEGDf = self.gexDf
-        DEGDf = DEGDf[(DEGDf.iloc[:,1:].T != 0).any()]
-        DEGDf.iloc[:,1:] = DEGDf.iloc[:,1:].apply(lambda x: x+0.1)
-        DEGDf.iloc[:,1:] = DEGDf.iloc[:,1:].apply(lambda x: x/x.median())
-        DEGDf.iloc[:,1:] = np.log2(DEGDf.iloc[:,1:])
-        self.DEGDf = DEGDf
 
-
-        f = lambda x: 1 if x < 1 else x
-        self.gexDf.iloc[:,1:] = self.gexDf.iloc[:,1:].applymap(func = f)
-        self.preDf = self.gexDf
-        #self.gexDf.iloc[:,1:] = self.gexDf.iloc[:,1:].applymap(lambda x: x + 0.01)
-        self.gexDf.iloc[:,1:] = self.gexDf.transpose().iloc[1:].transform(lambda x: x/x.median()).transpose()
-        self.preFilterCalc()
-        self.gexDf.iloc[:,1:] = self.gexDf.iloc[:,1:].applymap(lambda x: np.log2(x))
-        self.gexDf = self.gexDf[(self.gexDf.iloc[:,1:].T != 0).any()]
-        
-        self.DEGDf =  self.DEGDf[self.DEGDf['Gene'].isin(self.gexDf['Gene'].tolist())]
+            f = lambda x: 1 if x < 1 else x
+            self.gexDf.iloc[:,1:] = self.gexDf.iloc[:,1:].applymap(func = f)
+            self.preDf = self.gexDf
+            #self.gexDf.iloc[:,1:] = self.gexDf.iloc[:,1:].applymap(lambda x: x + 0.01)
+            self.gexDf.iloc[:,1:] = self.gexDf.transpose().iloc[1:].transform(lambda x: x/x.median()).transpose()
+            self.preFilterCalc()
+            self.gexDf.iloc[:,1:] = self.gexDf.iloc[:,1:].applymap(lambda x: np.log2(x))
+            self.gexDf = self.gexDf[(self.gexDf.iloc[:,1:].T != 0).any()]
+            
+            self.DEGDf =  self.DEGDf[self.DEGDf['Gene'].isin(self.gexDf['Gene'].tolist())]
+        except FileNotFoundError:
+            print('Gene column not found in dataframe.')
+            raise Exception()
+        else:
+            print('Unknow error'+ str(Exception))
 
         
     def preFilterCalc(self):
