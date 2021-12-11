@@ -17,6 +17,7 @@ pip install -r requirements.txt
 ## Usage
 
 To run the pipeline, start the jupyter notebook file and follow the instructions within the pipeline.
+It's recommended to use virtual environments when running the pipeline in order to avoid conflicting packages.
 
 ```python
 jupyter notebook analysis_pipeline
