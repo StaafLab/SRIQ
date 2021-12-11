@@ -22,7 +22,7 @@ To run the pipeline, start the jupyter notebook file and follow the instructions
 jupyter notebook analysis_pipeline
 ```
 
-To run SRIQ, navigate to the folder in which the VRLA.jar file exist and run following command:
+To run SRIQ, navigate to the folder in which the SRIQ.jar file exist and run following command:
 ```bash
 java -jar SRIQ.jar path-to/test.properties
 ```
