@@ -12,7 +12,7 @@ To install this repository simply create a folder and clone the repository:
 ```bash
 git clone https://github.com/StaafLab/SRIQ
 cd SRIQ
-pip install requirements.txt
+pip install -r requirements.txt
 ```
 ## Usage
 
