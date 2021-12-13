@@ -1,6 +1,6 @@
 ## Abstract
 This is an implementation of Systematic Random forest Integration to Qualitative threshold (SRIQ) clustering.
-SRIQ clusters by finding a small amount of highly correlated observations, then spiralling out from them to create bigger clusters.
+SRIQ clusters by finding a core clusters of highly correlated observations, then spiralling out from them to create bigger clusters.
 SRIQ evaluates clustering solution stability on its own and won't need user input for what number of cluster solutions to be evaluated.
 SRIQ has no limit to feature size performance wise, and can be run on ordinary home computers.
 
