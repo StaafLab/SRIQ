@@ -27,7 +27,11 @@ To run SRIQ, navigate to the folder in which the SRIQ.jar file exist and run fol
 ```bash
 java -jar SRIQ.jar path-to/test.properties
 ```
-
+Alternative to run SAMDEG, navigate to the folder in which the SAMDEG.jar file exist and run following command:
+```bash
+java -jar <path-to/SAMDEG.jar> <path-to/test.properties> <spiral (true or false)> <diameter> <no. of clusters> <q-value> <fold-change> <log2_transformed_gex_file>
+e.g., java -jar SAMDEG.jar "F:/test/LUAD_test/test.properties" false 0.63 6 0 2 "F:/test/LUAD_test/newFiltered_35k.txt"
+```
 ## Features
 
 The project provide following features:
