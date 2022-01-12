@@ -81,7 +81,7 @@ For python packages run following command:
 pip install -r requirements.txt
 ```
 
-To run SRIQ and SAM analysis java is needed on your system.
+To run SRIQ and SAM analysis, java is needed on your system.
 
 ## License
 
