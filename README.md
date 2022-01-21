@@ -68,7 +68,7 @@ To run SRIQ, navigate to the folder in which the SRIQ.jar file exist and run fol
 ```bash
 java -jar SRIQ.jar path-to/test.properties
 ```
-<b>output path:</b>e.g.,..\LUAD_SRIQ\LUAD_2021_FPKM_test_10000itr_1200var_10r\10000\QC_Spiral(false)\<br>
+<b>output path:</b>e.g.,..\LUAD_SRIQ\LUAD_2021_FPKM_test_10000itr_1200var_10r\10000\QC_Spiral(false)\ <br>
 
 <b>Step 4:</b> Select cluster solution<br>
 
