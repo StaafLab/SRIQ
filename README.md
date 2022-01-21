@@ -12,7 +12,8 @@ Step 1: Data Pre-process,navigate to the folder in which the SRIQPreprocess.jar 
 ```bash
 java -jar SRIQPreprocess.jar path-to/datafile.txt
 ```
-Step 2: 
+output: a file with name ending with "_mc_log2_nz" will be in the same path folder as input file path.
+Step 2: Edit the test.properties file
 ## Installation
 
 To install this repository simply create a folder and clone the repository:
