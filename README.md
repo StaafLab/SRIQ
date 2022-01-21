@@ -6,6 +6,13 @@ SRIQ has no limit to feature size performance wise, and can be run on ordinary h
 
 For more information about SRIQ, see our [publication](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
 
+
+## To Run SRIQ (JAVA)
+Step 1: Data Pre-process
+```bash
+java -jar SRIQPreprocess.jar path-to/datafile.txt
+```
+
 ## Installation
 
 To install this repository simply create a folder and clone the repository:
@@ -14,11 +21,7 @@ git clone https://github.com/StaafLab/SRIQ
 cd SRIQ
 pip install -r requirements.txt
 ```
-## To Run SRIQ (JAVA)
-Step 1: Data Pre-process
-```bash
-java -jar SRIQPreprocess.jar path-to/datafile.txt
-```
+
 ## Usage
 
 To run the pipeline, start the jupyter notebook file and follow the instructions within the pipeline.
