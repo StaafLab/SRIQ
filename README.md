@@ -8,7 +8,8 @@ For more information about SRIQ, see our [publication](https://www.youtube.com/w
 
 
 ## To Run SRIQ (JAVA)
-<b>Step 1:</b> Data Pre-process,navigate to the folder in which the SRIQPreprocess.jar file exist and run following command:
+<b>Step 1:</b> Data Pre-process<br>
+To preprocess the data, navigate to the folder in which the SRIQPreprocess.jar file exist and run following command:
 ```bash
 java -jar SRIQPreprocess.jar path-to/datafile.txt
 ```
