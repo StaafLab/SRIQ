@@ -46,6 +46,7 @@ java -jar <path-to/SAMDEG.jar> <path-to/test.properties> <spiral (true or false)
 e.g., java -jar SAMDEG.jar "F:/test/LUAD_test/test.properties" false 0.63 6 0 2 "F:/test/LUAD_test/newFiltered_35k.txt"
 ```
 <b>output:</b><br>
+## To Run SRIQ (Python/Jupyter)
 ## Installation
 
 To install this repository simply create a folder and clone the repository:
