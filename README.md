@@ -68,7 +68,7 @@ To run SRIQ, navigate to the folder in which the SRIQ.jar file exist and run fol
 ```bash
 java -jar SRIQ.jar path-to/test.properties
 ```
-<b>output path:</b>e.g.,..\LUAD_SRIQ\LUAD_2021_FPKM_test_10000itr_1200var_10r\10000\QC_Spiral(false)\ <br>
+<b>output path:</b> e.g.,..\LUAD_SRIQ\LUAD_2021_FPKM_test_10000itr_1200var_10r\10000\QC_Spiral(false)\ <br>
 
 <b>Step 4:</b> Select cluster solution from the image e.g., ..._Clusters_Frequencies.png<br>
 <img width="1853" alt="LUAD_gen_q_2000_Clusters_Frequencies" src="https://user-images.githubusercontent.com/25789892/150548980-28114c76-282a-4370-aa99-c78ba0ba9dfc.png">
