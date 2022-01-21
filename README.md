@@ -35,8 +35,8 @@ To run SRIQ, navigate to the folder in which the SRIQ.jar file exist and run fol
 java -jar SRIQ.jar path-to/test.properties
 ```
 <b>output:</b><br>
-<b>Step 4:</b><br>
-<b>Select cluster solution:</b>
+<b>Step 4:</b>Select cluster solution<br>
+
 
 ## Installation
 
