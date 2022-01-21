@@ -28,7 +28,11 @@ minClusterSize=0
 minBagSize=1200
 method=PEARSON
 ```
-<b>Step 3:</b>
+<b>Step 3:</b> SRIQ clustering <br>
+To run SRIQ, navigate to the folder in which the SRIQ.jar file exist and run following command:
+```bash
+java -jar SRIQ.jar path-to/test.properties
+```
 
 
 ## Installation
