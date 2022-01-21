@@ -8,12 +8,12 @@ For more information about SRIQ, see our [publication](https://www.youtube.com/w
 
 
 ## To Run SRIQ (JAVA)
-Step 1: Data Pre-process,navigate to the folder in which the SRIQPreprocess.jar file exist and run following command:
+<b>Step 1:</b> Data Pre-process,navigate to the folder in which the SRIQPreprocess.jar file exist and run following command:
 ```bash
 java -jar SRIQPreprocess.jar path-to/datafile.txt
 ```
-<b>output:</b> a file with name ending with "_mc_log2_nz" will be in the same path folder as input file folder.<br>
-Step 2: Edit the test.properties file
+<b>output:</b> a file with name ending with "_mc_log2_nz" will be in the same path folder as input file folder.<br><br>
+<b>Step 2:</b> Edit the test.properties file
 ## Installation
 
 To install this repository simply create a folder and clone the repository:
