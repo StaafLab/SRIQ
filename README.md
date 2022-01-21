@@ -13,7 +13,7 @@ For more information about SRIQ, see our [publication](https://www.youtube.com/w
 java -jar SRIQPreprocess.jar path-to/datafile.txt
 ```
 <b>output:</b> a file with name ending with "_mc_log2_nz" will be in the same path folder as input file folder.<br><br>
-<b>Step 2:</b> Edit the test.properties file, inFileName should be output file from SRIQPreprocess<br>
+<b>Step 2:</b> Edit the test.properties file, inFileName should be the output file from SRIQPreprocess (step 1)<br>
 ```bash
 #testing<br>
 studyName=LU_LUAD_SRIQ<br>
@@ -28,7 +28,7 @@ minClusterSize=0<br>
 minBagSize=1200<br>
 method=PEARSON<br>
 ```
-
+<b>Step 3:</b>
 
 
 ## Installation
