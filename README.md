@@ -14,6 +14,9 @@ git clone https://github.com/StaafLab/SRIQ
 cd SRIQ
 pip install -r requirements.txt
 ```
+## To Run SRIQ (JAVA)
+Step 1: Data Pre-process
+
 ## Usage
 
 To run the pipeline, start the jupyter notebook file and follow the instructions within the pipeline.
