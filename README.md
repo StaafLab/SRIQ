@@ -16,7 +16,9 @@ pip install -r requirements.txt
 ```
 ## To Run SRIQ (JAVA)
 Step 1: Data Pre-process
-
+```bash
+java -jar SRIQPreprocess.jar path-to/datafile.txt
+```
 ## Usage
 
 To run the pipeline, start the jupyter notebook file and follow the instructions within the pipeline.
