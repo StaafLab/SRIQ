@@ -7,7 +7,7 @@ SRIQ has no limit to feature size performance wise, and can be run on ordinary h
 For more information about SRIQ, see our [publication](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
 
 
-## To Run SRIQ (JAVA)
+## To run SRIQ (JAVA)
 <b>Step 1:</b> Data Pre-process<br>
 <b>e.g., Input File (FPKM) format</b>
 ```bash
@@ -80,7 +80,7 @@ java -jar <path-to/SAMDEG.jar> <path-to/test.properties> <spiral (true or false)
 e.g., java -jar SAMDEG.jar "F:/test/LUAD_test/test.properties" false 0.63 6 0 2 "F:/test/LUAD_test/newFiltered_35k.txt"
 ```
 <b>output path:</b> e.g., ...\LUAD_SRIQ\LUAD_2021_FPKM_test_10000itr_1200var_10r\10000\QC_Spiral(false)\Results_log_0.63_6\ <br>
-## To Run SRIQ (Python/Jupyter)
+## To run SRIQ (Python/Jupyter)
 ## Installation
 
 To install this repository simply create a folder and clone the repository:
