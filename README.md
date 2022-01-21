@@ -13,7 +13,7 @@ For more information about SRIQ, see our [publication](https://www.youtube.com/w
 java -jar SRIQPreprocess.jar path-to/datafile.txt
 ```
 <b>output:</b> a file with name ending with "_mc_log2_nz" will be in the same path folder as input file folder.<br><br>
-<b>Step 2:</b> Edit the test.properties file<br>
+<b>Step 2:</b> Edit the test.properties file, inFileName should be output file from SRIQPreprocess<br>
 #testing<br>
 studyName=LU_LUAD_SRIQ<br>
 studyPath=/home/Researcher/SRIQ/software/data/<br>
