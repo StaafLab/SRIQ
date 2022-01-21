@@ -14,6 +14,7 @@ To preprocess the data, navigate to the folder in which the SRIQPreprocess.jar f
 java -jar SRIQPreprocess.jar path-to/datafile.txt
 ```
 <b>output:</b> a file with name ending with "_mc_log2_nz" will be in the same path folder as input file folder.<br><br>
+
 <b>Step 2:</b> Edit the test.properties file, inFileName should be the output file from SRIQPreprocess (step 1)<br>
 ```bash
 #testing
@@ -35,9 +36,15 @@ To run SRIQ, navigate to the folder in which the SRIQ.jar file exist and run fol
 java -jar SRIQ.jar path-to/test.properties
 ```
 <b>output:</b><br>
-<b>Step 4:</b>Select cluster solution<br>
 
+<b>Step 4:</b> Select cluster solution<br>
 
+<b>Step 5:</b> SAMDEG<br>
+To run SAMDEG, navigate to the folder in which the SAMDEG.jar file exist and run following command:<br>
+```bash
+java -jar <path-to/SAMDEG.jar> <path-to/test.properties> <spiral (true or false)> <diameter> <no. of clusters> <q-value> <fold-change> <log2_transformed_gex_file>
+e.g., java -jar SAMDEG.jar "F:/test/LUAD_test/test.properties" false 0.63 6 0 2 "F:/test/LUAD_test/newFiltered_35k.txt"
+```
 ## Installation
 
 To install this repository simply create a folder and clone the repository:
