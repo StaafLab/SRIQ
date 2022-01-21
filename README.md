@@ -12,7 +12,7 @@ Step 1: Data Pre-process,navigate to the folder in which the SRIQPreprocess.jar 
 ```bash
 java -jar SRIQPreprocess.jar path-to/datafile.txt
 ```
-output: a file with name ending with "_mc_log2_nz" will be in the same path folder as input file path.
+output: a file with name ending with "_mc_log2_nz" will be in the same path folder as input file folder.<br>
 Step 2: Edit the test.properties file
 ## Installation
 
