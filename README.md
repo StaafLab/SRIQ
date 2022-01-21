@@ -9,7 +9,7 @@ For more information about SRIQ, see our [publication](https://www.youtube.com/w
 
 ## To Run SRIQ (JAVA)
 <b>Step 1:</b> Data Pre-process<br>
-<b>e.g., Input File format<b>
+<b>e.g., Input File (FPKM) format<b>
 ```bash
 Gene	TCGA-05-4384-01A	TCGA-05-4390-01A	TCGA-05-4396-01A	TCGA-05-4405-01A	TCGA-05-4410-01A	TCGA-05-4415-01A	TCGA-05-4417-01A	TCGA-05-4424-01A	TCGA-05-4425-01A	TCGA-05-4427-01A	TCGA-05-4433-01A
 ENSG00000242268.2	0.12364017	0	0.148772639	0	0	0	0	0	0	0	0.044008461
