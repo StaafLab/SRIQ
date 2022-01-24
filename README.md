@@ -75,7 +75,13 @@ java -jar SRIQ.jar path-to/test.properties
 <b>Step 4:</b> Select cluster solution from the image e.g., ..._Clusters_Frequencies.png<br>
 <img width="1853" alt="LUAD_gen_q_2000_Clusters_Frequencies" src="https://user-images.githubusercontent.com/25789892/150548980-28114c76-282a-4370-aa99-c78ba0ba9dfc.png">
 
-<b>Step 5:</b> SAMDEG<br>
+<b>Step 5:</b> Extract Clusters data<br>
+To extract clusters data, navigate to the folder in which the ExtractClustersInfo.jar file exist and run following command:<br>
+```bash
+java -jar <path-to/ExtractClustersInfo.jar> <path-to/test.properties> <spiral (true or false)> <diameter> <no. of clusters> <log2_transformed_gex_file>
+e.g., java -jar ExtractClustersInfo.jar "F:/test/LUAD_test/test.properties" false 0.63 6 "F:/test/LUAD_test/newFiltered_35k.txt"
+```
+<b>Step 6:</b> SAMDEG (Differentially Expressed Genes Analysis)<br>
 To run SAMDEG, navigate to the folder in which the SAMDEG.jar file exist and run following command:<br>
 ```bash
 java -jar <path-to/SAMDEG.jar> <path-to/test.properties> <spiral (true or false)> <diameter> <no. of clusters> <q-value> <fold-change> <log2_transformed_gex_file>
