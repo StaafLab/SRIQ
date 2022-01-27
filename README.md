@@ -4,7 +4,6 @@ SRIQ clusters by finding a core clusters of highly correlated observations, then
 SRIQ evaluates clustering solution stability on its own and won't need user input for what number of cluster solutions to be evaluated.
 SRIQ has no limit to feature size performance wise, and can be run on ordinary home computers.
 
-For more information about SRIQ, see our [publication](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
 ## SRIQ Algorithm Framework
 ![SRIQ method figure_v4](https://user-images.githubusercontent.com/25789892/150555679-5d91183e-f763-4266-9461-b2f36b17b6f9.png)
 
