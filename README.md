@@ -73,7 +73,7 @@ java -jar SRIQ.jar path-to/test.properties
 ```
 <b>output path:</b> e.g.,..\LUAD_SRIQ\LUAD_2021_FPKM_test_10000itr_1200var_10r\10000\QC_Spiral(false)\ <br>
 
-<b>Step 4:</b> Select cluster solution from the image e.g., ..._Clusters_Frequencies.png<br>
+<b>Step 4:</b> Select cluster solution from the image e.g., ..._Clusters_Frequencies.pdf<br>
 ![SRIQ clusters solution](https://user-images.githubusercontent.com/25789892/157626138-26b87bd0-9f28-4433-912b-979ed03336d8.jpeg)
 
 
