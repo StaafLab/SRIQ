@@ -7,7 +7,8 @@ SRIQ has no limit to feature size performance wise, and can be run on ordinary h
 ## SRIQ Algorithm Framework
 ![SRIQ method figure_v4](https://user-images.githubusercontent.com/25789892/150555679-5d91183e-f763-4266-9461-b2f36b17b6f9.png)
 
-[Step7and8 schema.pdf](https://github.com/StaafLab/SRIQ/files/8221804/Step7and8.schema.pdf)
+![Step7and8 schema](https://user-images.githubusercontent.com/25789892/157627014-e05c8c49-7a5c-440b-9e24-6697315e817b.jpg)
+
 
 ## To run SRIQ (JAVA)
 <b>Step 1:</b> Data Pre-process<br>
