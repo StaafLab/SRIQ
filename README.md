@@ -7,7 +7,8 @@ SRIQ evaluates clustering solution stability on its own and won't need user inpu
 ![SRIQ method figure_v4](https://user-images.githubusercontent.com/25789892/150555679-5d91183e-f763-4266-9461-b2f36b17b6f9.png)
 
 ## SRIQ Stabilty Test Framework
-![Step7and8 schema](https://user-images.githubusercontent.com/25789892/157627014-e05c8c49-7a5c-440b-9e24-6697315e817b.jpg)
+![Step7and8 schema](https://user-images.githubusercontent.com/25789892/160347182-efee2719-d87b-4749-a33f-0467286a697a.jpg)
+
 
 
 ## To run SRIQ (JAVA)
