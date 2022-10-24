@@ -81,10 +81,10 @@ java -jar -Xmx8g SRIQS.jar VRLA path-to/test.properties
 
 
 <b>Step 5:</b> Extract Clusters data<br>
-To extract clusters data, navigate to the folder in which the ExtractClustersInfo.jar file exist and run following command:<br>
+To extract clusters data, navigate to the folder in which the SRIQS.jar file exist and run following command:<br>
 ```bash
-java -jar <path-to/ExtractClustersInfo.jar> <path-to/test.properties> <spiral (true or false)> <diameter> <no. of clusters> <log2_transformed_gex_file>
-e.g., java -jar ExtractClustersInfo.jar "F:/test/LUAD_test/test.properties" false 0.63 6 "F:/test/LUAD_test/newFiltered_35k.txt"
+java -jar <path-to/SRIQS.jar> EXTRACT <path-to/test.properties> <spiral (true or false)> <diameter> <no. of clusters> <log2_transformed_gex_file>
+e.g., java -jar SRIQS.jar EXTRACT "F:/test/LUAD_test/test.properties" false 0.63 6 "F:/test/LUAD_test/newFiltered_35k.txt"
 ```
 <b>output path:</b> e.g., ...\LUAD_SRIQ\LUAD_2021_FPKM_test_10000itr_1200var_10r\10000\QC_Spiral(false)\Results_log_0.63_6\ <br><br>
 <b>Step 6:</b> SAMDEG (Differentially Expressed Genes Analysis)<br>
